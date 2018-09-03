@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recipe</title>
+</head>
+<body>
+
+    <h1>Recipes</h1>
+    {% for recipe in recipes %}
+        <b>Name</b> : {{ recipe.name }}
+        <br>
+        <b>Ingredients</b>:
+        <ul>
+        {% for ingredient in recipe.ingredients.all %}
+            <li>{{ ingredient.name }}</li>
+        {% endfor %}
+        </ul>
+        <br>
+    {% endfor %}
+
+</body>
+</html>
