@@ -136,6 +136,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# Cache time-to-live
+CACHE_TTL = 60 * 60
+
 
 # This is calback used for Django debug toolbar
 def show_debug_toolbar(request):
