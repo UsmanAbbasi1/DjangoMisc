@@ -35,7 +35,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'cache_example'
+    'cache_example',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -47,6 +48,12 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+if DEBUG:
+    MIDDLEWARE.append('debug_toolbar.middleware.DebugToolbarMiddleware')
+    DEBUG_TOOLBAR_CONFIG = {
+        'SHOW_TOOLBAR_CALLBACK': 'django_misc.settings.show_debug_toolbar',
+    }
 
 ROOT_URLCONF = 'django_misc.urls'
 
@@ -128,3 +135,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+# This is calback used for Django debug toolbar
+def show_debug_toolbar(request):
+    return True
