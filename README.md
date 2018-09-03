@@ -8,8 +8,8 @@ This project will contain examples for following topics:
 * Signals
 
 Setup Redis:
-wget http://download.redis.io/redis-stable.tar.gz (Download)
-tar xvzf redis-stable.tar.gz (unzip)
-cd redis-stable
-make
-redis-server (run redis server)
+* wget http://download.redis.io/redis-stable.tar.gz (Download)
+* tar xvzf redis-stable.tar.gz (unzip)
+* cd redis-stable
+* make
+* redis-server (run redis server)
