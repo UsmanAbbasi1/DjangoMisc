@@ -1,9 +1,9 @@
 # DjangoMisc
 
 This project will contain examples for following topics:
-* Setup docker
-* Setup celery
 * Caching in Django
+* Setup celery
+* Setup docker
 * Set up static files in Django
 * Signals
 
