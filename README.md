@@ -18,6 +18,6 @@ This project will contain examples for following topics:
 * Documentation link: http://docs.celeryproject.org/en/latest/getting-started/brokers/redis.html
 * Install Celery and dependencies: pip install -U celery[redis]
 * Run command for help: celery worker --help
-* See celery.py file for configurations.
+* See django_misc/celery.py file for configurations.
 * To run celery worker: celery worker -A django_misc //django_misc is name of app where celery.py exists.
 
