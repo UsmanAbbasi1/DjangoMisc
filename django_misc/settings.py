@@ -87,8 +87,11 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+try:
+    REDIS_HOST = os.environ['REDIS_HOST']
+except:
+    REDIS_HOST = "127.0.0.1"
 
-REDIS_HOST = "127.0.0.1"
 # https://realpython.com/caching-in-django-with-redis/
 CACHES = {
     "default": {
