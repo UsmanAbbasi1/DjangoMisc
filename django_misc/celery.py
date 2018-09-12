@@ -10,3 +10,4 @@ app = Celery('django_misc')
 
 # broker url format: redis://:password@hostname:port/db_number
 app.conf.broker_url = 'redis://' + settings.REDIS_HOST + ':6379/0'
+app.autodiscover_tasks()

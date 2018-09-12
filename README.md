@@ -19,5 +19,5 @@ This project will contain examples for following topics:
 * Install Celery and dependencies: pip install -U celery[redis]
 * Run command for help: celery worker --help
 * See django_misc/celery.py file for configurations.
-* To run celery worker: celery worker -A django_misc //django_misc is name of app where celery.py exists.
+* To run celery worker: celery worker -A django_misc --loglevel=INFO //django_misc is name of app where celery.py exists.
 
