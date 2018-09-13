@@ -3,6 +3,7 @@
 This project will contain examples for following topics:
 * Caching in Django
 * Setup celery
+* Management Commands
 * Setup docker
 * Set up static files in Django
 * Signals
