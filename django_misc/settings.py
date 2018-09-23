@@ -35,8 +35,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Custom apps
     'django_misc',
     'cache_example',
+    'jwt_auth_example',
+
+    # Third party apps
+    'rest_framework',
     'debug_toolbar',
 ]
 
@@ -104,6 +110,20 @@ CACHES = {
     }
 }
 
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated'
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        # Use this custom authentication class if jwt should be sent in query param
+        'jwt_auth_example.utils.CustomJSONWebTokenAuthentication',
+        # Use this authentication if jwt token should be sent in Authentication header
+        # 'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+    ),
+}
+
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 
@@ -139,6 +159,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+AUTH_USER_MODEL = 'jwt_auth_example.User'
 
 # Cache time-to-live
 CACHE_TTL = 60 * 60

@@ -4,8 +4,10 @@ celery==4.2.1
 Django==2.1
 django-debug-toolbar==1.9.1
 django-redis==4.9.0
+djangorestframework-jwt==1.11.0
 kombu==4.2.1
 psycopg2==2.7.5
+PyJWT==1.6.4
 pytz==2018.5
 redis==2.10.6
 sqlparse==0.2.4

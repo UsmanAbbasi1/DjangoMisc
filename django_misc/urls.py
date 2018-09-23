@@ -21,6 +21,7 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('cache_example/', include('cache_example.urls')),
+    path('jwt_auth_example/', include('jwt_auth_example.urls')),
 
 ]
 
@@ -28,4 +29,3 @@ if settings.DEBUG:
     urlpatterns += [
         path('__debug__/', include(debug_toolbar.urls))
     ]
-
