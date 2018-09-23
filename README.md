@@ -1,12 +1,12 @@
 # DjangoMisc
 
-This project will contain examples for following topics:
+This project contains examples for following topics:
+* JWT Authentication
+* Setup Celery and Redis
 * Caching in Django
-* Setup celery
 * Management Commands
-* Setup docker
 * Set up static files in Django
-* Signals
+* Setup docker (Will add later)
 
 # Setup Redis:
 * wget http://download.redis.io/redis-stable.tar.gz (Download)
@@ -22,3 +22,6 @@ This project will contain examples for following topics:
 * See django_misc/celery.py file for configurations.
 * To run celery worker: celery worker -A django_misc --loglevel=INFO //django_misc is name of app where celery.py exists.
 
+# Setup JWT Authentication
+* Comments are added in code.
+* Use this link for further guidance: https://getblimp.github.io/django-rest-framework-jwt/
