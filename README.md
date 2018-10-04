@@ -6,7 +6,6 @@ This project contains examples for following topics:
 * Caching in Django
 * Management Commands
 * Set up static files in Django
-* Setup docker (Will add later)
 
 # Setup Redis:
 * wget http://download.redis.io/redis-stable.tar.gz (Download)
@@ -25,3 +24,25 @@ This project contains examples for following topics:
 # Setup JWT Authentication
 * Comments are added in code.
 * Use this link for further guidance: https://getblimp.github.io/django-rest-framework-jwt/
+
+# HOW TO RUN PROJECT:
+
+Run following command in terminal to start project:
+
+Steps:
+
+1: Create Virtual environment:
+Install 'virtualenv' package to create virtual environments
+* pip install virtualenv
+* virtualenv myenv -p python3 # Create virtual env with python 3
+* source bin/activate. #start virtual env
+
+2: Run postgres server:
+* initdb pgsql/data (Only first time)
+* pg_ctl -D pgsql/data -l logfile start (run serever everytime)
+
+3: Run redis server:
+* redis-server
+
+4: Run Django server:
+* python manage.py runserver
