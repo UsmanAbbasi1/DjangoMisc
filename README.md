@@ -44,5 +44,8 @@ Install 'virtualenv' package to create virtual environments
 3: Run redis server:
 * redis-server
 
+4: Run celery worker:
+* celery worker -A django_misc --loglevel=INFO //django_misc is name of app where celery.py exists.
+
 4: Run Django server:
 * python manage.py runserver
