@@ -32,10 +32,9 @@ Run following command in terminal to start project:
 Steps:
 
 1: Create Virtual environment:
-Install 'virtualenv' package to create virtual environments
-* pip install virtualenv
+* pip install virtualenv # Install 'virtualenv' package to create virtual environments
 * virtualenv myenv -p python3 # Create virtual env with python 3
-* source bin/activate. #start virtual env
+* source bin/activate. # start virtual env
 
 2: Run postgres server:
 * initdb pgsql/data (Only first time)
