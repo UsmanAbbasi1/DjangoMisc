@@ -1,0 +1,47 @@
+version: '3.7'
+# A service definition contains configuration that is applied to each container started for that service,
+services:
+  db:
+    image: postgres
+    env_file:
+      - ./environment_variables/postgres.env
+  redis:
+    image: redis:3.2-alpine
+    env_file:
+      - ./environment_variables/redis.env
+  celery:
+    build: .
+    env_file:
+      - ./environment_variables/postgres.env
+      - ./environment_variables/redis.env
+    command: celery worker -A django_misc --loglevel=INFO
+    volumes:
+      - .:/code
+    depends_on:
+      - redis
+  web:
+    # Configuration options that are applied at build time i.e. Configuration of the container.
+    # build can be specified as a string containing a path to the build context which should be a Dockerfile path
+    build: .
+    env_file:
+      - ./environment_variables/postgres.env
+      - ./environment_variables/redis.env
+    # The main purpose of a CMD(in Docker file) and command(in DockerCompose file) is to provide defaults for an executing container.
+    # These defaults can include an executable
+    # the CMD/command instruction sets the command to be executed when running the image.
+    # Need to run django server and celery worker with some bash script.
+    # See this for explanation of why celery does not have its own image: https://github.com/docker-library/celery/issues/1#issuecomment-287655769
+    command: python manage.py runserver 0.0.0.0:8000
+    # The volumes key mounts the project directory (current directory) on the host to /code inside the container,
+    # allowing you to modify the code on the fly, without having to rebuild the image.
+    # Mount '.' i.e. current directory of project in containers 'code' directory. Project directory is not copied but
+    # only mounted by this command. See this great answer for difference between 'ADD' and 'volume' key: https://stackoverflow.com/a/27753725
+    volumes:
+      - .:/code
+    # Expose ports, Syntax: HOST:CONTAINER. This maps host port '8000' to containers port '8000'.
+    ports:
+      - "8000:8000"
+    # Service dependencies cause the following behaviors:
+    # docker-compose up starts services in dependency order. Because of the following command, db is started before web.
+    depends_on:
+      - db

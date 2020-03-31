@@ -24,7 +24,7 @@ SECRET_KEY = '0k81sgh^3mfi&g1=5fzq5aapq=e)is881k8g8whwogx@a=9edc'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0']
 
 # Application definition
 
@@ -88,17 +88,14 @@ WSGI_APPLICATION = 'django_misc.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'django_misc',
-        'USER': 'django_misc',
-        'PASSWORD': 'django_misc',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'NAME': os.environ['POSTGRES_DB'],
+        'USER': os.environ['POSTGRES_USER'],
+        'PASSWORD': os.environ['POSTGRES_PASSWORD'],
+        'HOST': os.environ['POSTGRES_HOST'],
+        'PORT': os.environ['POSTGRES_PORT'],
     }
 }
-try:
-    REDIS_HOST = os.environ['REDIS_HOST']
-except:
-    REDIS_HOST = "127.0.0.1"
+REDIS_HOST = os.environ['REDIS_HOST']
 
 # https://realpython.com/caching-in-django-with-redis/
 CACHES = {
