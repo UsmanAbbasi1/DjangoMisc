@@ -14,7 +14,16 @@ services:
     env_file:
       - ./environment_variables/postgres.env
       - ./environment_variables/redis.env
+    # The main purpose of a CMD(in Docker file) and command(in DockerCompose file) is to provide defaults for an executing container.
+    # These defaults can include an executable
+    # the CMD/command instruction sets the command to be executed when running the image.
+    # Need to run django server and celery worker with some bash script.
+    # See this for explanation of why celery does not have its own image: https://github.com/docker-library/celery/issues/1#issuecomment-287655769
     command: celery worker -A django_misc --loglevel=INFO
+    # The volumes key mounts the project directory (current directory) on the host to /code inside the container,
+    # allowing you to modify the code on the fly, without having to rebuild the image.
+    # Mount '.' i.e. current directory of project in containers 'code' directory. Project directory is not copied but
+    # only mounted by this command. See this great answer for difference between 'ADD' and 'volume' key: https://stackoverflow.com/a/27753725
     volumes:
       - .:/code
     depends_on:
@@ -26,16 +35,8 @@ services:
     env_file:
       - ./environment_variables/postgres.env
       - ./environment_variables/redis.env
-    # The main purpose of a CMD(in Docker file) and command(in DockerCompose file) is to provide defaults for an executing container.
-    # These defaults can include an executable
-    # the CMD/command instruction sets the command to be executed when running the image.
-    # Need to run django server and celery worker with some bash script.
-    # See this for explanation of why celery does not have its own image: https://github.com/docker-library/celery/issues/1#issuecomment-287655769
-    command: python manage.py runserver 0.0.0.0:8000
-    # The volumes key mounts the project directory (current directory) on the host to /code inside the container,
-    # allowing you to modify the code on the fly, without having to rebuild the image.
-    # Mount '.' i.e. current directory of project in containers 'code' directory. Project directory is not copied but
-    # only mounted by this command. See this great answer for difference between 'ADD' and 'volume' key: https://stackoverflow.com/a/27753725
+    # As we need more than one command to start django app, we can give path of bash script here which will run all the required commands
+    command: ./scripts/run_django_app.sh
     volumes:
       - .:/code
     # Expose ports, Syntax: HOST:CONTAINER. This maps host port '8000' to containers port '8000'.
