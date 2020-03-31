@@ -1,8 +1,9 @@
 # DjangoMisc
 
 This project contains examples for following topics:
+* Docker and DockerCompose. This app is containerized with different containers for django app, postgres, redis and celery.
 * JWT Authentication
-* Setup Celery and Redis
+* Celery and Redis
 * Caching in Django
 * Management Commands
 * Set up static files in Django
