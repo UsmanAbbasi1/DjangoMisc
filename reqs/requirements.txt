@@ -8,7 +8,7 @@ djangorestframework==3.11.0
 djangorestframework-jwt==1.11.0
 kombu==4.2.1
 psycopg2-binary==2.8.4
-PyJWT==1.6.4
+PyJWT==2.4.0
 pytz==2018.5
 redis==2.10.6
 sqlparse==0.2.4
